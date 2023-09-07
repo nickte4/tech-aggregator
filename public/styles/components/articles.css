@@ -1,0 +1,19 @@
+/* css file for article list */
+.articles {
+  width: 100%;
+}
+
+.articles__list {
+  list-style-type: none;
+}
+
+.articles__list_item_h1 {
+  font-size: var(--size-3xl);
+  color: var(--clr-dark);
+  transition: all 0.5s ease;
+  transform: translateX(0);
+}
+
+.articles__list_item_h1:hover {
+  transform: translateX(15px);
+}

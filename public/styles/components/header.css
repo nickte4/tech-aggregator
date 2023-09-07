@@ -1,0 +1,11 @@
+/* css for header */
+
+.header {
+  display: flex;
+  justify-content: left;
+  margin-top: 2rem;
+}
+
+.header__text {
+  font-size: 3.5rem;
+}
