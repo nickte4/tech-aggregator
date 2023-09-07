@@ -17,7 +17,7 @@ const scrapeBlog = async (url, elements, titleElement, articleList) => {
 
       // grab the first 3 articles' titles and links
       return Array.from(articles)
-        .slice(0, 3)
+        .slice(0, 5)
         .map((article) => {
           const title = article.querySelector(titleSelector).innerText;
           const url = article.querySelector("a").href;

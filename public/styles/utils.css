@@ -27,16 +27,25 @@
   margin-top: 5rem;
 }
 
-.line_break {
+.line_break,
+.articles__list_line_break {
   margin-top: 1rem;
   margin-bottom: 1rem;
   margin-left: auto;
   margin-right: auto;
   background-color: var(--clr-light-dark);
-  width: 90%;
   height: 2px;
   opacity: 0.2;
   border-radius: 10%;
+}
+
+.line_break {
+  width: 50%;
+}
+
+.articles__list_line_break {
+  width: 90%;
+  margin-left: 0;
 }
 
 /* xs */

@@ -9,7 +9,30 @@ async function getArticles() {
   return articles;
 }
 
+// display articles on web page
+function displayArticles(articles) {
+  const articleList = document.querySelector(".articles__list");
+  articles.forEach((article) => {
+    const articleItem = document.createElement("li");
+    // create title
+    const title = document.createElement("h1");
+    title.classList.add("articles__list_item_h1");
+    title.textContent = article.title;
+    // create link
+    const link = document.createElement("a");
+    link.href = article.url;
+    // append tags li > a > h1
+    link.appendChild(title);
+    articleItem.appendChild(link);
+    articleList.appendChild(articleItem);
+    const lineBreak = document.createElement("div");
+    lineBreak.classList.add("articles__list_line_break");
+    articleList.appendChild(lineBreak);
+  });
+}
+
 // ON PAGE LOAD
-const articleList = getArticles().then((articles) => {
+getArticles().then((articles) => {
   console.log(articles);
+  displayArticles(articles);
 });
