@@ -18,3 +18,9 @@
   transform: translateX(15px);
   color: var(--clr-purple);
 }
+
+.articles__list_item_h3 {
+  font-size: var(--size-base);
+  color: var(--clr-dark);
+  opacity: 0.3;
+}

@@ -6,13 +6,19 @@ import puppeteer from "puppeteer"; // import puppeteer
   elements: where to find title and link elements
   titleElement: CSS selector for title element
 */
-const scrapeBlog = async (url, elements, titleElement, articleList) => {
+const scrapeBlog = async (
+  url,
+  elements,
+  titleElement,
+  articleList,
+  blogName
+) => {
   const browser = await puppeteer.launch({ headless: "true" }); // launch browser
   const page = await browser.newPage(); // create new page
   await page.goto(url); // go to URL
 
   const allArticles = await page.evaluate(
-    (allElementsSelector, titleSelector) => {
+    (allElementsSelector, titleSelector, blog) => {
       const articles = document.querySelectorAll(allElementsSelector);
 
       // grab the first 3 articles' titles and links
@@ -21,11 +27,12 @@ const scrapeBlog = async (url, elements, titleElement, articleList) => {
         .map((article) => {
           const title = article.querySelector(titleSelector).innerText;
           const url = article.querySelector("a").href;
-          return { title, url };
+          return { title, url, blog }; // return title, link, and blog name
         });
     },
     elements,
-    titleElement
+    titleElement,
+    blogName
   );
   articleList.push(...allArticles);
   // to view a specific title: console.log(allArticles[i].title);
