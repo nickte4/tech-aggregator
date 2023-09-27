@@ -32,6 +32,7 @@ const scrapeBlog = async (
     console.log("browser launched");
     const page = await browser.newPage(); // create new page
     await page.goto(url); // go to URL
+    await page.waitForNavigation(); // wait for page to load
 
     const allArticles = await page.evaluate(
       (allElementsSelector, titleSelector, blog) => {
