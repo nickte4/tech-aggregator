@@ -3,10 +3,14 @@
  */
 
 // get articles from server
-async function getArticles() {
-  const response = await fetch("/api/tech-articles");
-  const articles = await response.json();
-  return articles;
+async function getAndDisplayArticles() {
+  try {
+    const response = await fetch("/api/tech-articles");
+    const articles = await response.json();
+    displayArticles(articles);
+  } catch (err) {
+    console.error("Error fetching articles: ", err);
+  }
 }
 
 // display articles on web page
@@ -36,6 +40,7 @@ function displayArticles(articles) {
   });
 }
 
-// ON PAGE LOAD
-const articles = await getArticles();
-displayArticles(articles);
+// Call the async function when the page is loaded
+window.addEventListener("load", () => {
+  getAndDisplayArticles();gi
+});
