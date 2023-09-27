@@ -1,4 +1,5 @@
 import puppeteer from "puppeteer";
+"dotenv".config(); // load .env variables
 
 /* 
   General blog scrapper function.
@@ -13,7 +14,19 @@ const scrapeBlog = async (
   articleList,
   blogName
 ) => {
-  const browser = await puppeteer.launch({ headless: "new" });
+  const browser = await puppeteer.launch({
+    args: [
+      "--no-sandbox",
+      "disable-setuid-sandbox",
+      "--single-process",
+      "--no-zygote",
+    ],
+    headless: "new",
+    executablePath:
+      process.env.node === "production"
+        ? process.env.PUPPETEER_EXECUTABLE_PATH
+        : puppeteer.executablePath(),
+  });
   try {
     const page = await browser.newPage(); // create new page
     await page.goto(url); // go to URL
