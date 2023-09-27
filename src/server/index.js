@@ -9,7 +9,7 @@ const port = 3000; // Port to listen on
 app.listen(port, () => {
   console.log(`App listening at http://localhost:${port}`);
 });
-// app.use(express.static("public")); // serve static files from public folder
+app.use(express.static("public")); // serve static files from public folder
 app.use(express.json({ limit: "1mb" })); // parse JSON data from request body
 
 // GET request handler for /api/articles
