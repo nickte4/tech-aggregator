@@ -1,4 +1,17 @@
+import chromium from "@sparticuz/chromium-min";
 import puppeteer from "puppeteer-core"; // import puppeteer
+
+async function getBrowser() {
+  return puppeteer.launch({
+    args: [...chromium.args, "--hide-scrollbars", "--disable-web-security"],
+    defaultViewport: chromium.defaultViewport,
+    executablePath: await chromium.executablePath(
+      `https://github.com/Sparticuz/chromium/releases/download/v116.0.0/chromium-v116.0.0-pack.tar`
+    ),
+    headless: chromium.headless,
+    ignoreHTTPSErrors: true,
+  });
+}
 
 /* 
   General blog scrapper function.
@@ -13,7 +26,7 @@ const scrapeBlog = async (
   articleList,
   blogName
 ) => {
-  const browser = await puppeteer.launch({ headless: "true" }); // launch browser
+  const browser = await getBrowser(); // get browser
   const page = await browser.newPage(); // create new page
   await page.goto(url); // go to URL
 
