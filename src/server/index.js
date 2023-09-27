@@ -13,4 +13,4 @@ app.get("/api/tech-articles", async (request, response) => {
   response.json(await database.retrieveData());
 });
 
-export default { app };
+export default app;
