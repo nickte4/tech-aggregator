@@ -1,5 +1,6 @@
 import puppeteer from "puppeteer";
-"dotenv".config(); // load .env variables
+import dotenv from "dotenv";
+dotenv.config();
 
 /* 
   General blog scrapper function.
