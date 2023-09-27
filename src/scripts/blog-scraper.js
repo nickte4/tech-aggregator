@@ -6,7 +6,7 @@ async function getBrowser() {
     args: [...chromium.args, "--hide-scrollbars", "--disable-web-security"],
     defaultViewport: chromium.defaultViewport,
     executablePath: await chromium.executablePath(
-      `https://github.com/Sparticuz/chromium/releases/download/v116.0.0/chromium-v116.0.0-pack.tar`
+      `https://github.com/Sparticuz/chromium/releases/download/v112.0.0/chromium-v112.0.0-pack.tar`
     ),
     headless: chromium.headless,
     ignoreHTTPSErrors: true,
@@ -26,7 +26,7 @@ const scrapeBlog = async (
   articleList,
   blogName
 ) => {
-  const browser = await puppeteer.launch({ headless: true }); // launch browser
+  const browser = await getBrowser(); // get browser
   const page = await browser.newPage(); // create new page
   await page.goto(url); // go to URL
 
