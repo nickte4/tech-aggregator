@@ -42,5 +42,5 @@ function displayArticles(articles) {
 
 // Call the async function when the page is loaded
 window.addEventListener("load", () => {
-  getAndDisplayArticles();gi
+  getAndDisplayArticles();
 });
