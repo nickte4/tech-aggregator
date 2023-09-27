@@ -18,5 +18,3 @@ app.get("/api/tech-articles", async (request, response) => {
 app.listen(PORT, () => {
   console.log(`Server listening on port: ${PORT}`);
 });
-
-export default app;
