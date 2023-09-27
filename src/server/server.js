@@ -1,10 +1,9 @@
 /* Server-side code for the tech aggregator */
 import express from "express";
-import aggregator from "../scripts/index.js";
+import database from "../scripts/database.js";
 
 const app = express();
 const port = 3000; // Port to listen on
-const articleList = await aggregator.aggregateTechArticles();
 
 // open port 3000 for listening
 app.listen(port, () => {
@@ -16,5 +15,5 @@ app.use(express.json({ limit: "1mb" })); // parse JSON data from request body
 // GET request handler for /api/articles
 app.get("/api/tech-articles", (request, response) => {
   console.log("GET request received at /api/tech-articles");
-  response.json(articleList);
+  response.json(database.retrieveData());
 });
