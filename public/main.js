@@ -37,7 +37,5 @@ function displayArticles(articles) {
 }
 
 // ON PAGE LOAD
-await getArticles().then((articles) => {
-  console.log(articles);
-  displayArticles(articles);
-});
+const articles = await getArticles();
+displayArticles(articles);
