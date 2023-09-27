@@ -29,6 +29,7 @@ const scrapeBlog = async (
         : puppeteer.executablePath(),
   });
   try {
+    console.log("browser launched");
     const page = await browser.newPage(); // create new page
     await page.goto(url); // go to URL
 
@@ -36,7 +37,7 @@ const scrapeBlog = async (
       (allElementsSelector, titleSelector, blog) => {
         const articles = document.querySelectorAll(allElementsSelector);
 
-        // grab the first 3 articles' titles and links
+        // grab the first 5 articles' titles and links
         return Array.from(articles)
           .slice(0, 5)
           .map((article) => {
@@ -55,6 +56,7 @@ const scrapeBlog = async (
   } catch (err) {
     console.error("Error scraping blog: ", err);
   } finally {
+    console.log("browser closing");
     await browser.close(); // close browser
   }
 };
