@@ -4,8 +4,9 @@
   "description": "A web-scraper powered by Node.js",
   "main": "index.js",
   "scripts": {
+    "build": "npm run build",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node index.js"
+    "start": "npm run start"
   },
   "keywords": [
     "node",
