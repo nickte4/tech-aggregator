@@ -37,7 +37,7 @@ function displayArticles(articles) {
 }
 
 // ON PAGE LOAD
-getArticles().then((articles) => {
+await getArticles().then((articles) => {
   console.log(articles);
   displayArticles(articles);
 });
