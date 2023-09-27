@@ -1,6 +1,6 @@
 /* Server-side code for the tech aggregator */
 import express from "express";
-import database from "../scripts/database.js";
+import database from "./src/scripts/database.js";
 
 const app = express();
 
