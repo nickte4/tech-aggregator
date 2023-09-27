@@ -1,5 +1,5 @@
 import chromium from "@sparticuz/chromium-min";
-import puppeteer from "puppeteer-core"; // import puppeteer
+import puppeteer from "puppeteer-core/lib/cjs/puppeteer/puppeteer-core.js"; // import puppeteer
 
 async function getBrowser() {
   return puppeteer.launch({
