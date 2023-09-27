@@ -26,7 +26,7 @@ const scrapeBlog = async (
   articleList,
   blogName
 ) => {
-  const browser = await getBrowser(); // get browser
+  const browser = await puppeteer.launch({ headless: true }); // launch browser
   const page = await browser.newPage(); // create new page
   await page.goto(url); // go to URL
 
