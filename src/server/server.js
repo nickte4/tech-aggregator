@@ -17,3 +17,5 @@ app.get("/api/tech-articles", async (request, response) => {
   console.log("GET request received at /api/tech-articles");
   response.json(await database.retrieveData());
 });
+
+export default { app };
