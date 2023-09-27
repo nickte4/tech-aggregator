@@ -24,6 +24,6 @@
     "node": "^20.7.0",
     "nodemon": "^3.0.1",
     "puppeteer": "^21.1.1",
-    "puppeteer-core": "^21.3.5"
+    "puppeteer-core": "^19.8.0"
   }
 }
