@@ -17,9 +17,8 @@ const scrapeBlog = async (
 ) => {
   const browser = await puppeteer.launch({
     args: [
+      "--disable-setuid-sandbox",
       "--no-sandbox",
-      "disable-setuid-sandbox",
-      "--disable-dev-shm-usage",
       "--single-process",
       "--no-zygote",
     ],
@@ -32,21 +31,15 @@ const scrapeBlog = async (
   try {
     console.log("browser launched"); // TODO: remove debug
     const page = await browser.newPage(); // create new page
-    console.log("page created"); // TODO: remove debug
+    console.log("going to " + url); // TODO: remove debug
     // go to URL
-    await page.goto(url, { waitUntil: "domcontentloaded" }, (err) => {
-      if (err) {
-        console.error("Error going to URL: " + url, err);
-      }
-    });
+    await page.goto(url, { waitUntil: "domcontentloaded" });
     // wait for page to load
     await page.waitForSelector(elements);
-    console.log("page loaded"); // TODO: remove debug
     // get all articles
     const allArticles = await page.evaluate(
       (allElementsSelector, titleSelector, blog) => {
         const articles = document.querySelectorAll(allElementsSelector);
-        console.log("getting articles"); // TODO: remove debug
         // grab the first 5 articles' titles and links
         return Array.from(articles)
           .slice(0, 5)
