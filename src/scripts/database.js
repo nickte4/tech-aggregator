@@ -2,7 +2,7 @@
 import aggregator from "../scripts/index.js";
 import fsSync from "fs";
 import fs from "fs/promises";
-const DB_FILE_NAME = "../assets/tech-article-db.txt";
+const DB_FILE_NAME = "./src/assets/tech-article-db.txt"; // name of database file
 /*
     getTechArticles: web scrape for tech articles 
 */

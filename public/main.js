@@ -7,6 +7,7 @@ async function getAndDisplayArticles() {
   try {
     const response = await fetch("/api/tech-articles");
     const articles = await response.json();
+    console.log(articles);
     displayArticles(articles);
   } catch (err) {
     console.error("Error fetching articles: ", err);
