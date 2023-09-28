@@ -30,17 +30,17 @@ const scrapeBlog = async (
         : puppeteer.executablePath(),
   });
   try {
-    console.log("browser launched");
+    console.log("browser launched"); // TODO: remove debug
     const page = await browser.newPage(); // create new page
     // go to URL
     await page.goto(url);
     // wait for page to load
-    await page.waitForEvent("domcontentloaded");
-    console.log("page loaded");
+    await page.waitForSelector(elements);
+    console.log("page loaded"); // TODO: remove debug
     const allArticles = await page.evaluate(
       (allElementsSelector, titleSelector, blog) => {
         const articles = document.querySelectorAll(allElementsSelector);
-        console.log("getting articles");
+        console.log("getting articles"); // TODO: remove debug
         // grab the first 5 articles' titles and links
         return Array.from(articles)
           .slice(0, 5)
@@ -57,11 +57,11 @@ const scrapeBlog = async (
     articleList.push(...allArticles);
     // to view a specific title: console.log(allArticles[i].title);
     // console.log(allArticles);
-    console.log("articles scraped");
+    console.log("articles scraped"); // TODO: remove debug
   } catch (err) {
     console.error("Error scraping blog: ", err);
   } finally {
-    console.log("browser closing");
+    console.log("browser closing"); // TODO: remove debug
     await browser.close(); // close browser
   }
 };
