@@ -1,5 +1,5 @@
 import blogScraper from "./blog-scraper.js";
-const URL = "http://www.techcrunch.com"; // URL to be scraped
+const URL = "https://www.techcrunch.com"; // URL to be scraped
 const blogName = "TechCrunch"; // name of blog
 
 const techCrunch = async (articleList) => {
