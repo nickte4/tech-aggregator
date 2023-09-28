@@ -34,8 +34,11 @@ const scrapeBlog = async (
     const page = await browser.newPage(); // create new page
     console.log("page created"); // TODO: remove debug
     // go to URL
-    await page.goto(url, { waitUntil: "domcontentloaded" });
-    console.log("going to " + url); // TODO: remove debug
+    await page.goto(url, { waitUntil: "domcontentloaded" }, (err) => {
+      if (err) {
+        console.error("Error going to URL: " + url, err);
+      }
+    });
     // wait for page to load
     await page.waitForSelector(elements);
     console.log("page loaded"); // TODO: remove debug
