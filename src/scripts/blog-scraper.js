@@ -32,30 +32,32 @@ const scrapeBlog = async (
   try {
     console.log("browser launched"); // TODO: remove debug
     const page = await browser.newPage(); // create new page
+    console.log("page created"); // TODO: remove debug
     // go to URL
-    await page.goto(url).then(async () => {
-      await page.waitForSelector(elements).then(async () => {
-        console.log("page loaded"); // TODO: remove debug
-        const allArticles = await page.evaluate(
-          (allElementsSelector, titleSelector, blog) => {
-            const articles = document.querySelectorAll(allElementsSelector);
-            console.log("getting articles"); // TODO: remove debug
-            // grab the first 5 articles' titles and links
-            return Array.from(articles)
-              .slice(0, 5)
-              .map((article) => {
-                const title = article.querySelector(titleSelector).innerText;
-                const url = article.querySelector("a").href;
-                return { title, url, blog }; // return title, link, and blog name
-              });
-          },
-          elements,
-          titleElement,
-          blogName
-        );
-        articleList.push(...allArticles);
-      });
-    });
+    await page.goto(url, { waitUntil: "domcontentloaded" });
+    console.log("going to " + url); // TODO: remove debug
+    // wait for page to load
+    await page.waitForSelector(elements);
+    console.log("page loaded"); // TODO: remove debug
+    // get all articles
+    const allArticles = await page.evaluate(
+      (allElementsSelector, titleSelector, blog) => {
+        const articles = document.querySelectorAll(allElementsSelector);
+        console.log("getting articles"); // TODO: remove debug
+        // grab the first 5 articles' titles and links
+        return Array.from(articles)
+          .slice(0, 5)
+          .map((article) => {
+            const title = article.querySelector(titleSelector).innerText;
+            const url = article.querySelector("a").href;
+            return { title, url, blog }; // return title, link, and blog name
+          });
+      },
+      elements,
+      titleElement,
+      blogName
+    );
+    articleList.push(...allArticles);
     // to view a specific title: console.log(allArticles[i].title);
     // console.log(allArticles);
     console.log("articles scraped"); // TODO: remove debug
