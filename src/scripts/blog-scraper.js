@@ -34,11 +34,11 @@ const scrapeBlog = async (
     const page = await browser.newPage(); // create new page
     // go to URL
     await page.goto(url, { waitUntil: "load" });
-
+    console.log("page loaded");
     const allArticles = await page.evaluate(
       (allElementsSelector, titleSelector, blog) => {
         const articles = document.querySelectorAll(allElementsSelector);
-
+        console.log("getting articles");
         // grab the first 5 articles' titles and links
         return Array.from(articles)
           .slice(0, 5)
@@ -55,6 +55,7 @@ const scrapeBlog = async (
     articleList.push(...allArticles);
     // to view a specific title: console.log(allArticles[i].title);
     // console.log(allArticles);
+    console.log("articles scraped");
   } catch (err) {
     console.error("Error scraping blog: ", err);
   } finally {
